@@ -1,0 +1,4 @@
+4163,19950612,Ahmed Nabeel,House 10 Umar street,03202383638,domestic,1Phase,20210121,600.87
+9648,19700218,Mustafa Haider,House 72 Akbar street,03338373830,domestic,3Phase,20200712,1200,700
+3173,19820922,Ali Mustafa,House 98 Jam Street,03200418391,commercial,1Phase,20210308,876.8
+4326,19930217,Umar Ahmed,House 23 Umar Street,03205864747,commercial,3Phase,20200109,160.76,276.9
