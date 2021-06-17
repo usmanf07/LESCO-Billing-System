@@ -203,47 +203,6 @@ public:
 		return pointer;
 	}
 
-	//Function for combining two strings by adding space between them and saving them in string 1
-
-	static void StringConcatenate(char*& String_1, char* String_2)
-	{
-		char* tempString = nullptr;
-
-		int tempLen = StringLenght(String_1) + StringLenght(String_2) + 2;
-
-		tempString = new char[tempLen];
-
-		int i = 0;
-		int j = 0;
-
-		while (i < StringLenght(String_1))
-		{
-			tempString[i] = String_1[i];
-			i++;
-		}
-
-		tempString[StringLenght(String_1)] = ' ';
-		i++;
-
-		if (String_1 != 0)
-		{
-			delete[] String_1;
-		}
-
-		while (i < tempLen - 1)
-		{
-			tempString[i] = String_2[j];
-			i++;
-			j++;
-		}
-
-		tempString[tempLen - 1] = '\0';
-
-		String_1 = GetStringFromBuffer(tempString);
-
-		delete[] tempString;
-	}
-
 	// Function for comparing two strings and returning true if they match
 
 	static bool SearchString(char* MainString, char* found)                  
@@ -869,7 +828,7 @@ public:
 	char* getCustomerAddress();
 
 	void PrintCustomer();
-	void addNewCustomer();
+	void addNewCustomer(Customer**&, int);
 	void setBillStatus(char*);
 	void LoadSingleCustomer(ifstream&);
 	void billingSetter(Billing* bills);
@@ -1058,7 +1017,7 @@ void Customer::updateCustomerFile(ofstream& fout)
 }
 
 // takes new Customer Information while registration
-void Customer::addNewCustomer()
+void Customer::addNewCustomer(Customer**& List, int total)
 {
 
 	char temp[500];
@@ -1136,14 +1095,24 @@ void Customer::addNewCustomer()
 	}
 
 	connectionDate = Helper::getCurrentDate();
-
-	int number = rand() % 9000 + 1000;
-
 	char tempID[5];
+	flag = false;
+	while(!flag)
+	{
+		flag = true;
+		int number = rand() % 9000 + 1000;
+		int i;
 
-	int i;
+		sprintf(tempID, "%d", number);                                                     // generating random valid ID
 
-	sprintf(tempID, "%d", number);                                                     // generating random valid ID
+		for(int i = 0; i < total; i++)
+		{
+			char* temp = List[i] -> getCustomerID();
+			if(Helper::SearchString(temp, tempID))
+				flag = false;
+		}
+		
+	}
 
 	customerID = Helper::GetStringFromBuffer(tempID);
 }
@@ -1412,7 +1381,7 @@ void Employee::addNewCustomer(Customer**& customerlist, Billing**& billinglist,i
 {
 	customerlist[totalcustomer] = new Customer();
 
-	customerlist[totalcustomer] -> addNewCustomer();
+	customerlist[totalcustomer] -> addNewCustomer(customerlist, totalcustomer);
 	char* customerid = customerlist[totalcustomer] -> getCustomerID();
 	char* customertype = customerlist[totalcustomer] -> getCustomerType();
 	char* metertype = customerlist[totalcustomer] -> getMeterType();
