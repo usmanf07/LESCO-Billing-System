@@ -634,6 +634,13 @@ void Billing::addNewBillingInfo(char* ID, char* customertype, char* metertype)
 
 	string Month;
 
+	if(month < 10)
+		Month = "0" + to_string(month);
+	else
+	{
+		Month = to_string(month);
+	}
+
 	billingMonth = stoi(Month);
 
 	currentMeter_Regular = 0;
