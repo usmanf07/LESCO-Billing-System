@@ -2102,37 +2102,35 @@ Customer* LESCO::CustomerMainLogin()
 		}
 		attempt++;
 	}
-
+	attempt = 0;
+	int password;
 	if (flag == true)
 	{
-		int password;
-		attempt = 0;
+		
 		flag = false;
 
-		while (flag != true && attempt < 4)
+		
+
+		while (!flag && attempt < 4)
 		{
 			cout << "Enter Your Password: \t";
 			cin >> password;
-
+	
 			if (password == CurrentCustomer->Customer::getCustomerDOB())
 			{
 				flag = true;
 				system("cls");
 				cout << "Successfully Logged In!" << endl;
-				attempt += 4;
 				return CurrentCustomer;
 			}
 			else
 			{
-				if (attempt < 3)
-					cout << "The password you entered is Invalid, Please try again!" << endl;
-
-				flag = false;
+				cout << "The password you entered is Invalid, Please try again!" << endl;
+				attempt++;
 			}
-			attempt++;
 		}
 		cout << "You are left with no more attempts. Log In again" << endl << endl;
-		return 0;
+		return false;
 	}
 	else
 	{
