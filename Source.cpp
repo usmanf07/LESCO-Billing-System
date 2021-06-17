@@ -7,6 +7,14 @@
 
 using namespace std;
 
+template <typename T, typename T2>
+void destructList(T2**& List, int size)
+{
+	for(int i = 0; i < size; i++)
+		delete List[i];
+	delete[] List;
+}
+
 class Helper
 {
 public:
@@ -636,6 +644,7 @@ void Billing::addNewBillingInfo(char* ID, char* customertype, char* metertype)
 
 	if(month < 10)
 		Month = "0" + to_string(month);
+
 	else
 	{
 		Month = to_string(month);
@@ -890,6 +899,9 @@ Customer::Customer()
 // Destructor of Customer Class
 Customer::~Customer()
 {
+	if(biller)
+		biller = NULL;
+
 	if (meterType)
 		delete [] meterType;
 
@@ -1375,6 +1387,7 @@ Employee::Employee()
 {
 	employeeID = NULL;
 	employeePass = NULL;
+	customerBill = NULL;
 }
 
 //destructor
@@ -1385,6 +1398,9 @@ Employee::~Employee()
 
 	if (employeePass)
 		delete [] employeePass;
+
+	if(customerBill)
+		customerBill = NULL;
 }
 
 char* Employee::getEmployeeID()
@@ -1627,6 +1643,7 @@ public:
 	Customer* CustomerMainLogin();
 	Customer* CustomerViewBillLogin();
 
+	~LESCO();
 };
 
 // LESCO Class COnstructor
@@ -2072,6 +2089,21 @@ void LESCO::saveUpdatedEmployeeList()
 
 }
 
+LESCO::~LESCO()
+{
+	
+	destructList<Customer>(customerList, totalCustomers);
+	destructList<Employee>(employeeList, totalEmployee);
+	destructList<Billing>(billingList, totalCustomers);
+
+	if(CurrentEmployee)
+		CurrentEmployee = NULL;
+	if(CurrentCustomer)
+		CurrentCustomer = NULL;
+	if(CustomerLogin)
+		CustomerLogin = NULL;
+}
+
 // Customer's initial login system using ID and birthday as a password
 Customer* LESCO::CustomerMainLogin()
 {
@@ -2242,14 +2274,14 @@ void main()
 	bool flag = false;
 
 	int userType = 0;
-
-	while (!flag) // user interface for both employees and customers
-	{
-		Sleep(200); cout << "\t\t\t L";
+line:	Sleep(200); cout << "\t\t\t L";
 		Sleep(200); cout << "E";
 		Sleep(200); cout << "S";
 		Sleep(200); cout << "C";
 		Sleep(200); cout << "O" << endl << endl;
+	while (!flag) // user interface for both employees and customers
+	{
+		
 		cout << "\t  Login As " << endl;
 		cout << "1. Employee         2. Customer" << endl;
 		switch (getch())
@@ -2319,7 +2351,8 @@ void main()
 
 				case '7':
 					system("cls");
-					exit(3);
+					flag = false;
+					goto line;
 					break;
 
 				default:
@@ -2360,7 +2393,8 @@ void main()
 
 				case '2':
 					system("cls");
-					exit(0);
+					flag = false;
+					goto line;
 				}
 			}
 		}
