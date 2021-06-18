@@ -1,4 +1,4 @@
-                                                                 # LESCO Billing System
+                                                                 LESCO Billing System
                                                                       
                                                                Electrically Interstellar
                                                                     
