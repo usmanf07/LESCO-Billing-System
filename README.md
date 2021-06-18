@@ -45,17 +45,17 @@ Reference number | Address | Name | Current reading | Previous reading | Units c
 
 
 
-                                                               # Group Work Division 
+                                                               Group Work Division 
                                                                     
-                                                                   ## Usman Faisal
+                                                                   Usman Faisal
 Fulfilling Billing Class requirements: Calculation of each Customer’s bill and associating Bills with Customers according to their respective attributes. Random Generation of date through time functions as well as auto updating of files when any update from the Employee/LESCO is recorded. Creating Billing information file according to given requirements, and setting up the Customer with its billing information. Implementing Inheritance. Updating of Paid / Unpaid Status automatically.
 
-                                                                    ## Izza Mujeeb
+                                                                    Izza Mujeeb
 Setting up the customer file according to given requirements, along with saving the input in the Customer Class’s members by loading the file. Bill Calculation of 1  / 3 Phase meters by implementing Polymorphism through virtual functions, setting up New Billing Information in Billing / LESCO classes, also enabling the Employee to View Total Paid and Unpaid Bill Report before or after adding any new Customer. Comment documentation and further establishing ISE Principles in the code.
 
-                                                                     ## Bsma Ashar
+                                                                     Bisma Ashar
 Fulfilling Customer Class Requirements which feature Unique Login System by the Customer, Registration of New Customer, as well as architecting a User-Friendly Interface specially accommodated for the Customer with each Customer’s calculated Bill and Information, and its association with LESCO’s Class. Reading from Tarif Tax File and setting up of Tarif Class information. Requirements Analysis prior to the start of Increment 1 through documentation.
 
-                                                                    ## Hssan Rehman
+                                                                    Hassan Rehman
 Fulfilling requirements of Employee through Unique Login System and File Handling of Employee Data. Setting File content according to requirements initially, establishing read functionality from created file and then associating Employees to LESCO’s main class. Setting up the Employee file, with unique ID and Passwords as well as creation of LESCO’s Employee Billing functionality or reviewing bills of any already registered or newly registered Customer.
 
