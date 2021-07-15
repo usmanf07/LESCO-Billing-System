@@ -1781,7 +1781,7 @@ void LESCO::setBillStatus()
 	char customerid[10];
 	cout << "Enter the customer ID: " << endl;
 	cin >> customerid;
-	if (CurrentCustomer = searchCustomerID(customerid))
+	if (CurrentCustomer == searchCustomerID(customerid))
 	{
 
 		if (CurrentEmployee->setBillStatus(CurrentCustomer))
